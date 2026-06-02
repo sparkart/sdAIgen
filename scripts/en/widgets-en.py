@@ -178,7 +178,7 @@ zrok_token_widget = factory.create_text('Zrok Token:')
 zrok_button = create_expandable_button('Register Zrok Token', 'https://colab.research.google.com/drive/1d2sjWDJi_GYBUavrHSuQyHTDuLy36WpU')
 zrok_box = factory.create_hbox([zrok_token_widget, zrok_button])
 
-commandline_arguments_widget = factory.create_text('Arguments:', WEBUI_PARAMS['A1111'])
+commandline_arguments_widget = factory.create_text('Arguments:', WEBUI_PARAMS['ComfyUI'])
 
 accent_colors_options = ['anxety', 'blue', 'green', 'peach', 'pink', 'red', 'yellow']
 theme_accent_widget = factory.create_dropdown(accent_colors_options, 'Theme Accent:', 'anxety',
