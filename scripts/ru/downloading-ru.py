@@ -243,13 +243,15 @@ if latest_webui or latest_extensions:
             ipySys('git pull --rebase')
             ipySys('git stash pop')
 
-        ## Update extensions
+        ## Update extensions / custom_nodes
         if latest_extensions:
-            for entry in os.listdir(f"{WEBUI}/extensions"):
-                dir_path = f"{WEBUI}/extensions/{entry}"
-                if os.path.isdir(dir_path):
-                    subprocess.run(['git', 'reset', '--hard'], cwd=dir_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                    subprocess.run(['git', 'pull'], cwd=dir_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            ext_dir = extension_dir  # auto-maps to custom_nodes for ComfyUI
+            if os.path.exists(ext_dir):
+                for entry in os.listdir(ext_dir):
+                    dir_path = f"{ext_dir}/{entry}"
+                    if os.path.isdir(dir_path):
+                        subprocess.run(['git', 'reset', '--hard'], cwd=dir_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                        subprocess.run(['git', 'pull'], cwd=dir_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     print(f"\r✨ Обновление {action} Завершено!")
 
