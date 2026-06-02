@@ -17,7 +17,7 @@
         {"name": "VAE", "type": "VAE", "links": [3], "slot_index": 2}
       ],
       "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
-      "widgets_values": ["wan2.1_i2v_480p_14B_fp16.safetensors"]
+      "widgets_values": ["wan2.1_i2v_1.3B_fp16.safetensors"]
     },
     {
       "id": 10,
@@ -107,7 +107,7 @@
         {"name": "IMAGE", "type": "IMAGE", "links": [35], "slot_index": 0}
       ],
       "properties": {"Node name for S&R": "WANVAEDecode"},
-      "widgets_values": ["wan2.1_i2v_480p_14B_fp16.safetensors"]
+      "widgets_values": ["wan2.1_i2v_1.3B_fp16.safetensors"]
     },
     {
       "id": 37,

@@ -120,7 +120,7 @@ HR = widgets.HTML('<hr>')
 """Create model selection widgets"""
 model_header = factory.create_header('Model Selection')
 model_options = read_model_data(f"{SCRIPTS}/_models-data.py", 'model')
-model_widget = factory.create_dropdown(model_options, 'Model:', 'BluMix')
+model_widget = factory.create_dropdown(model_options, 'Model:', 'WAN 2.1 I2V 1.3B')
 model_num_widget = factory.create_text('Model Number:', '', 'Enter model numbers for download.')
 inpainting_model_widget = factory.create_checkbox('Inpainting Models', False, class_names=['inpaint'], layout={'width': '250px'})
 XL_models_widget = factory.create_checkbox('SDXL', False, class_names=['sdxl'])
@@ -131,14 +131,14 @@ switch_model_widget = factory.create_hbox([inpainting_model_widget, XL_models_wi
 """Create VAE selection widgets"""
 vae_header = factory.create_header('VAE Selection')
 vae_options = read_model_data(f"{SCRIPTS}/_models-data.py", 'vae')
-vae_widget = factory.create_dropdown(vae_options, 'Vae:', 'Blessed2.vae')
+vae_widget = factory.create_dropdown(vae_options, 'Vae:', 'WAN 2.1 VAE')
 vae_num_widget = factory.create_text('Vae Number:', '', 'Enter vae numbers for download.')
 
 # --- ADDITIONAL ---
 """Create additional configuration widgets"""
 additional_header = factory.create_header('Additionally')
-latest_webui_widget = factory.create_checkbox('Update WebUI', True)
-latest_extensions_widget = factory.create_checkbox('Update Extensions', True)
+latest_webui_widget = factory.create_checkbox('Update WebUI', False)
+latest_extensions_widget = factory.create_checkbox('Update Extensions', False)
 check_custom_nodes_deps_widget = factory.create_checkbox('Check Custom-Nodes Dependencies', True)
 change_webui_widget = factory.create_dropdown(list(WEBUI_PARAMS.keys()), 'WebUI:', 'ComfyUI', layout={'width': 'auto'})
 detailed_download_widget = factory.create_dropdown(['off', 'on'], 'Detailed Download:', 'off', layout={'width': 'auto'})
