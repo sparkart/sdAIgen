@@ -96,6 +96,10 @@ def parse_arguments():
         choices=['m', 'merged', 'e', 'e621', 'd', 'danbooru'],
         help='Select tagger type: m/merged, e/e621, d/danbooru'
     )
+    parser.add_argument('-w', '--workflow', type=str, default=None,
+                        help='Path/URL to ComfyUI workflow JSON (WAN 2.1)')
+    parser.add_argument('--workflow-name', type=str, default='wan21_i2v.json',
+                        help='Workflow filename to save as (default: wan21_i2v.json)')
     return parser.parse_args()
 
 def _trashing():
@@ -343,6 +347,26 @@ if __name__ == '__main__':
 
         if UI == 'ComfyUI':
             osENV['MPLBACKEND'] = 'agg'
+
+            # Pre-load workflow JSON if specified
+            if args.workflow:
+                workflow_dir = Path(WEBUI) / 'user/default/workflows'
+                workflow_dir.mkdir(parents=True, exist_ok=True)
+                workflow_path = workflow_dir / args.workflow_name
+                
+                if args.workflow.startswith('http'):
+                    print(f"⬇️ Downloading workflow: {args.workflow}")
+                    import requests as _rq
+                    resp = _rq.get(args.workflow, timeout=30)
+                    resp.raise_for_status()
+                    workflow_path.write_text(resp.text, encoding='utf-8')
+                else:
+                    wf_src = Path(args.workflow)
+                    if wf_src.exists():
+                        shutil.copy2(wf_src, workflow_path)
+                
+                print(f"✅ Workflow saved: {args.workflow_name}")
+                clear_output(wait=True)
 
             COMFYUI_SETTINGS_PATH = SCR_PATH / 'ComfyUI.json'
             if check_custom_nodes_deps:

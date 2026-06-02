@@ -1,6 +1,20 @@
 ## MODEL
 
 model_list = {
+    # === WAN 2.1 Video Models ===
+    "WAN 2.1 I2V 14B (480p)": [
+        {'url': "https://huggingface.co/Wan-AI/Wan2.1-I2V-14B-480P/resolve/main/diffusion_pytorch_model.safetensors", 'name': "wan2.1_i2v_480p_14B_fp16.safetensors"},
+    ],
+    "WAN 2.1 I2V 14B (720p)": [
+        {'url': "https://huggingface.co/Wan-AI/Wan2.1-I2V-14B-720P/resolve/main/diffusion_pytorch_model.safetensors", 'name': "wan2.1_i2v_720p_14B_fp16.safetensors"},
+    ],
+    "WAN 2.1 T2V 14B": [
+        {'url': "https://huggingface.co/Wan-AI/Wan2.1-T2V-14B/resolve/main/diffusion_pytorch_model.safetensors", 'name': "wan2.1_t2v_14B_fp16.safetensors"},
+    ],
+    "WAN 2.1 I2V 1.3B": [
+        {'url': "https://huggingface.co/Wan-AI/Wan2.1-I2V-1.3B/resolve/main/diffusion_pytorch_model.safetensors", 'name': "wan2.1_i2v_1.3B_fp16.safetensors"},
+    ],
+    # === SD Image Models (original) ===
     "Anime (by XpucT) + INP": [
         {'url': "https://huggingface.co/XpucT/Anime/resolve/main/Anime_v2.safetensors", 'name': "Anime_V2.safetensors"},
         {'url': "https://huggingface.co/XpucT/Anime/resolve/main/Anime_v2-inpainting.safetensors", 'name': "Anime_V2-inpainting.safetensors"}
@@ -38,6 +52,11 @@ model_list = {
 ## VAE
 
 vae_list = {
+    # === WAN 2.1 VAE ===
+    "WAN 2.1 VAE": [
+        {'url': "https://huggingface.co/Wan-AI/Wan2.1-I2V-14B-480P/resolve/main/vae/diffusion_pytorch_model.safetensors", 'name': "wan_2.1_vae.safetensors"},
+    ],
+    # === SD VAEs (original) ===
     "Anime.vae": [
         {'url': "https://huggingface.co/fp16-guy/anything_kl-f8-anime2_vae-ft-mse-840000-ema-pruned_blessed_clearvae_fp16_cleaned/resolve/main/kl-f8-anime2_fp16.safetensors", 'name': "Anime-kl-f8.vae.safetensors"},
         {'url': "https://huggingface.co/fp16-guy/anything_kl-f8-anime2_vae-ft-mse-840000-ema-pruned_blessed_clearvae_fp16_cleaned/resolve/main/vae-ft-mse-840000-ema-pruned_fp16.safetensors", 'name': "Anime-mse.vae.safetensors"}

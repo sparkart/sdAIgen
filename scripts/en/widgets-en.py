@@ -140,7 +140,7 @@ additional_header = factory.create_header('Additionally')
 latest_webui_widget = factory.create_checkbox('Update WebUI', True)
 latest_extensions_widget = factory.create_checkbox('Update Extensions', True)
 check_custom_nodes_deps_widget = factory.create_checkbox('Check Custom-Nodes Dependencies', True)
-change_webui_widget = factory.create_dropdown(list(WEBUI_PARAMS.keys()), 'WebUI:', 'A1111', layout={'width': 'auto'})
+change_webui_widget = factory.create_dropdown(list(WEBUI_PARAMS.keys()), 'WebUI:', 'ComfyUI', layout={'width': 'auto'})
 detailed_download_widget = factory.create_dropdown(['off', 'on'], 'Detailed Download:', 'off', layout={'width': 'auto'})
 choose_changes_box = factory.create_hbox(
     [
@@ -239,6 +239,23 @@ Embedding_url_widget = factory.create_text('Embedding:')
 Extensions_url_widget = factory.create_text('Extensions:')
 ADetailer_url_widget = factory.create_text('ADetailer:')
 custom_file_urls_widget = factory.create_text('File (txt):')
+
+# --- VIDEO SETTINGS (WAN 2.1) ---
+"""Create video generation settings widgets"""
+video_header = factory.create_header('🎬 Video Settings (WAN 2.1)')
+resolution_options = ['480p (832×480)', '720p (1280×720)', '1080p (1920×1080)']
+resolution_widget = factory.create_dropdown(resolution_options, 'Resolution:', '480p (832×480)')
+frames_options = ['33 (1s @ 16fps)', '49 (3s @ 16fps)', '65 (4s @ 16fps)', '81 (5s @ 16fps)']
+frames_widget = factory.create_dropdown(frames_options, 'Frames:', '81 (5s @ 16fps)')
+steps_widget = factory.create_text('Steps:', '20', 'Sampling steps (higher = better quality, slower)')
+sampler_options = ['euler', 'dpmpp_2m', 'dpmpp_sde', 'uni_pc']
+sampler_widget = factory.create_dropdown(sampler_options, 'Sampler:', 'euler')
+cfg_widget = factory.create_text('CFG:', '4.0', 'Classifier-free guidance scale')
+seed_widget = factory.create_text('Seed:', '-1', 'Random seed (-1 = random)')
+video_settings_box = factory.create_vbox(
+    [video_header, resolution_widget, frames_widget, steps_widget, sampler_widget, cfg_widget, seed_widget],
+    class_names=['container', 'container_video']
+)
 
 # --- Save Button ---
 """Create button widgets"""
@@ -452,7 +469,7 @@ model_vae_box = factory.create_hbox(
 )
 
 widgetContainer = factory.create_vbox(
-    [model_vae_box, additional_box, custom_download_box, save_button],
+    [model_vae_box, video_settings_box, additional_box, custom_download_box, save_button],
     class_names=['widgetContainer'],
     layout={'min_width': CONTAINERS_WIDTH, 'max_width': CONTAINERS_WIDTH}
 )
@@ -593,6 +610,8 @@ SETTINGS_KEYS = [
       'change_webui', 'latest_webui', 'latest_extensions', 'check_custom_nodes_deps', 'detailed_download',
       'controlnet', 'controlnet_num', 'commit_hash', 'branch',
       'civitai_token', 'huggingface_token', 'zrok_token', 'ngrok_token', 'commandline_arguments', 'theme_accent',
+      # Video
+      'resolution', 'frames', 'steps', 'sampler', 'cfg', 'seed',
       # CustomDL
       'empowerment', 'empowerment_output',
       'Model_url', 'Vae_url', 'LoRA_url', 'Embedding_url', 'Extensions_url', 'ADetailer_url',
@@ -640,7 +659,7 @@ def save_data(button):
     """Handle save button click"""
     save_settings()
     all_widgets = [
-        model_box, vae_box, additional_box, custom_download_box, save_button,             # mainContainer
+        model_box, vae_box, video_settings_box, additional_box, custom_download_box, save_button,             # mainContainer
         GDrive_button, export_button, import_button, export_output, gdrive_settings_box   # sideContainer
     ]
     factory.close(all_widgets, class_names=['hide'], delay=0.8)

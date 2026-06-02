@@ -50,7 +50,7 @@ os.environ.update({
 # ====================== REMOTE SOURCES ====================
 
 # GitHub configuration
-DEFAULT_USER = 'anxety-solo'
+DEFAULT_USER = 'sparkart'
 DEFAULT_REPO = 'sdAIgen'
 DEFAULT_BRANCH = 'main'
 DEFAULT_LANG = 'en'
